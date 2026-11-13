@@ -198,7 +198,7 @@ public:
 
 	friend void operator>>(istream& in, Cofetarie& cof);
 
-	//postincrementare
+	//postincrementare j = i++
 	Cofetarie operator++(int) {
 		Cofetarie copie = *this;
 		this->chirie++;
@@ -206,7 +206,7 @@ public:
 		return copie;
 	}
 
-	//preincrementare
+	//preincrementare j = ++i
 	Cofetarie operator++() {
 		this->chirie++;
 		return *this;
@@ -253,13 +253,51 @@ void operator>>(istream& in, Cofetarie& cof) {
 
 void main() {
 	Cofetarie cNedelya;
-	cNedelya.afisareCofetarie();
+
+	//cin >> cNedelya;
+
+	cNedelya += 400;
+
+	if (!cNedelya) {
+		cout << endl << "Chirie nenula!";
+	}
+	else {
+		cout << endl << "Chirie nula!";
+	}
+
+	cout << endl << "Apel operator functie: " << cNedelya(10);
+
+	//cNedelya.afisareCofetarie();
+	cout << cNedelya;
+
+	Cofetarie c1 = cNedelya++;
+
+	cout << c1;
+	cout << cNedelya;
+
+	Cofetarie c2 = ++cNedelya;
+
+	cout << c2;
+	cout << cNedelya;
 
 	float* vectorConsumatie = new float[3] {35, 27, 41};
 	Cofetarie* pMinimal = new Cofetarie(7, 800, "Minimal", CENTRALA, 3, vectorConsumatie);
 	pMinimal->afisareCofetarie();
 
+	if (cNedelya < *pMinimal) {
+		cout << endl << "Cofetaria Nedelya are mai putine locuri!";
+	}
+	else {
+		cout << endl << "Cofetaria Romana are mai putine locuri!";
+	}
+
+	(*pMinimal)[0] = 24;
+	cout << endl << "Apel operator index: " << (*pMinimal)[0];
+
+
 	cout << endl << "Am construit " << Cofetarie::nrCofetarii << " cofetarii!";
+
+	cout << (int)(*pMinimal);
 
 	delete pMinimal;
 }
